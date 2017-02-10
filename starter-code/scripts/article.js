@@ -15,6 +15,17 @@ Article.prototype.toHtml = function() {
   // TODO: Use handlebars to render your articles.
   //       - Get your template from the DOM.
   //       - Now "compile" your template with Handlebars.
+  var sourceScript = $('#handlebars_template').html();
+  var handlebarsTemplate = Handlebars.compile(sourceScript);
+  var context = {
+    'title': this.title,
+    'author': this.author,
+    
+  }
+  var compiledHtml = handlebarsTemplate(context);
+  $('.article_placeholder').html(compiledHtml);
+  // console.log($('#handlebars_template'));
+  // console.log(sourceScript, 'sourceScript');
 
   // REVIEW: If your template will use properties that aren't on the object yet, add them.
   //   Since your template can't hold any JS logic, we need to execute the logic here.
